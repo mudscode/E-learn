@@ -11,11 +11,6 @@ const dotenv = require("dotenv").config();
 // App
 const app = express();
 
-// Middleware
-app.use(express.json());
-app.use(urlencoded({ extended: true }));
-app.use(logger("dev"));
-
 // Mongoose Connection
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -25,6 +20,17 @@ mongoose
   .catch((error) => {
     console.log(`An error occured while connecteing ${error}`);
   });
+
+// Middleware
+app.use(express.json());
+app.use(urlencoded({ extended: true }));
+app.use(logger("dev"));
+
+// Routes
+const authRoutes = require("./routes/authRoutes.js");
+
+// Rotues Usage
+app.use("/auth", authRoutes);
 
 // Server
 const port = process.env.PORT || 5000;

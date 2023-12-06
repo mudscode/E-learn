@@ -11,6 +11,7 @@ const instructorSchema = mongoose.Schema(
     email: {
       type: String,
       required: true,
+      unique: true,
     },
     password: {
       type: String,
@@ -22,6 +23,10 @@ const instructorSchema = mongoose.Schema(
     },
     profilePic: {
       type: String,
+    },
+    isAnInstructor: {
+      type: Boolean,
+      default: true,
     },
     expertiseIn: [
       {

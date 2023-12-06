@@ -17,6 +17,10 @@ const learnerSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    isALearner: {
+      type: Boolean,
+      default: true,
+    },
     profilePic: {
       type: String,
     },
