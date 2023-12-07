@@ -33,7 +33,7 @@ async function instructorAuth(req, res, next) {
       isAnInstructor: true,
     });
 
-    if (!instructor || instructor._id.toString() !== req.params.id) {
+    if (!instructor || instructor._id !== req.params.id) {
       return res.status(401).json({ message: "Forbidden - Access denied." });
     }
 
@@ -51,7 +51,7 @@ async function learnerAuth(req, res, next) {
       isALearner: true,
     });
 
-    if (!learner || learner._id.toString() !== req.params.id) {
+    if (!learner || learner._id !== req.params.id) {
       return res.status(401).json({ message: "Forbidden - Access denied." });
     }
 
