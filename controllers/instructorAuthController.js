@@ -4,7 +4,7 @@ const { generateToken } = require("../middleware/authMiddleware");
 const Learner = require("../models/Learner");
 
 // Instructor signup
-const registerInstructor = async (req, res) => {
+async function registerInstructor(req, res) {
   const { name, email, password } = req.body;
 
   const requiredFields = ["name", "email", "password"];
@@ -46,10 +46,10 @@ const registerInstructor = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-};
+}
 
 // Instructor login
-const loginInstructor = async (req, res) => {
+async function loginInstructor(req, res) {
   const { email } = req.body;
 
   try {
@@ -100,6 +100,6 @@ const loginInstructor = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-};
+}
 
 module.exports = { registerInstructor, loginInstructor };

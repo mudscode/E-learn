@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const { generateToken } = require("../middleware/authMiddleware");
 
 // Learner SignUp
-const registerLearner = async (req, res) => {
+async function registerLearner(req, res) {
   const { name, email, password } = req.body;
 
   const requiredFields = ["name", "email", "password"];
@@ -41,10 +41,10 @@ const registerLearner = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-};
+}
 
 // Learner LogIn
-const loginLearner = async (req, res) => {
+async function loginLearner(req, res) {
   const { email } = req.body;
 
   try {
@@ -81,6 +81,6 @@ const loginLearner = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};
+}
 
 module.exports = { loginLearner, registerLearner };
