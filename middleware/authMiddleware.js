@@ -16,7 +16,7 @@ function verifyToken(req, res, next) {
       if (error) {
         return res.status(403).json({ message: "Tokenn not valid" });
       }
-      req.userId = decodedUser;
+      req.user.id = decodedUser;
       next();
     });
   } else {
@@ -29,12 +29,12 @@ function verifyToken(req, res, next) {
 async function instructorAuth(req, res, next) {
   try {
     const instructor = await Instructor.findOne({
-      _id: req.userId,
+      _id: req.user.id,
       isAnInstructor: true,
     });
 
-    if (!instructor || instructor._id !== req.params.id) {
-      return res.status(401).json({ message: "Forbidden - Access denied." });
+    if (!instructor || instructor._id !== req.params.instructorId) {
+      return res.status(403).json({ message: "Forbidden - Access denied." });
     }
 
     req.user = instructor;
@@ -47,12 +47,12 @@ async function instructorAuth(req, res, next) {
 async function learnerAuth(req, res, next) {
   try {
     const learner = await Learner.findOne({
-      _id: req.userId,
+      _id: req.user.id,
       isALearner: true,
     });
 
-    if (!learner || learner._id !== req.params.id) {
-      return res.status(401).json({ message: "Forbidden - Access denied." });
+    if (!learner || learner._id !== req.params.learnerId) {
+      return res.status(403).json({ message: "Forbidden - Access denied." });
     }
 
     req.user = learner;

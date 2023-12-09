@@ -30,11 +30,13 @@ app.use(logger("dev"));
 const authRoutes = require("./routes/authRoutes.js");
 const learnerRoutes = require("./routes/learnerRoutes.js");
 const instructorRoutes = require("./routes/instructorRoutes.js");
+const courseRoutes = require("./routes/courseRoutes.js");
 
 // Rotues Usage
 app.use("/auth", authRoutes);
 app.use("/users/learner", learnerRoutes);
 app.use("/users/instructor", instructorRoutes);
+app.use("/courses", courseRoutes);
 
 // Server
 const port = process.env.PORT || 5000;

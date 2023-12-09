@@ -3,10 +3,13 @@
 const mongoose = require("mongoose");
 
 const commentSchema = mongoose.Schema({
-  type: String,
   commentBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Learner",
+  },
+  commentText: {
+    type: String,
+    required: true,
   },
   date: {
     type: Date,
@@ -36,7 +39,6 @@ const Course = mongoose.Schema(
       {
         type: {
           type: String,
-          enum: ["video", "text", "quiz"],
         },
         url: String,
         duration: Number,

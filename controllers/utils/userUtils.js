@@ -4,20 +4,21 @@ const bcrypt = require("bcrypt");
 
 async function updateUser(Model, req, res) {
   try {
+
     if (req.body.password) {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(req.body.password, salt);
       req.body.password = hashedPassword;
     }
 
-    const user = await Model.findById(req.params.id);
+    const user = await Model.findById(req.user._id);
 
     if (!user) {
       return res.status(404).json({ error: `${Model.modelName} not found.` });
     }
 
     const updatedUser = await Model.findByIdAndUpdate(
-      req.params.id,
+      req.user._id,
       { $set: req.body },
       { new: true }
     );
@@ -31,7 +32,7 @@ async function updateUser(Model, req, res) {
 
 async function deleteUser(Model, req, res) {
   try {
-    const user = await Model.findByIdAndDelete(req.params.id);
+    const user = await Model.findByIdAndDelete(req.user._id);
     res
       .status(200)
       .json({ message: `${Model.modelName} deleted successfully.` });
@@ -42,7 +43,7 @@ async function deleteUser(Model, req, res) {
 
 async function getUser(Model, req, res) {
   try {
-    const user = await Model.findById(req.params.id);
+    const user = await Model.findById(req.user._id);
 
     if (user) {
       return res.status(200).json(user);

@@ -5,21 +5,21 @@ const instructorController = require("../controllers/instructorController");
 const authMiddleware = require("../middleware/authMiddleware");
 
 router.put(
-  ":id",
+  "/:instructorId",
   authMiddleware.verifyToken,
   authMiddleware.instructorAuth,
   instructorController.updateInstructor
 );
 
 router.delete(
-  ":id",
+  "/:instructorId",
   authMiddleware.verifyToken,
   authMiddleware.instructorAuth,
   instructorController.deleteInstructor
 );
 
 router.get(
-  ":id",
+  "/:instructorId",
   authMiddleware.verifyToken,
   authMiddleware.instructorAuth,
   instructorController.getInstructor

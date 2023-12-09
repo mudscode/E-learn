@@ -1,6 +1,7 @@
 // Learner controller
 
 const Learner = require("../models/Learner");
+const Course = require("../models/Course");
 const userUtils = require("./utils/userUtils");
 
 async function updateLearner(req, res) {
@@ -15,4 +16,8 @@ async function getLearner(req, res) {
   return await userUtils.getUser(Learner, req, res);
 }
 
-module.exports = { updateLearner, deleteLearner, getLearner };
+module.exports = {
+  updateLearner,
+  deleteLearner,
+  getLearner,
+};
