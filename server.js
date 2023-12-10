@@ -2,8 +2,6 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
-const http = require("http");
-const cors = require("cors");
 const logger = require("morgan");
 const { urlencoded } = require("body-parser");
 const dotenv = require("dotenv").config();
@@ -31,12 +29,14 @@ const authRoutes = require("./routes/authRoutes.js");
 const learnerRoutes = require("./routes/learnerRoutes.js");
 const instructorRoutes = require("./routes/instructorRoutes.js");
 const courseRoutes = require("./routes/courseRoutes.js");
+const discussionRoutes = require("./routes/discussionRoutes.js");
 
 // Rotues Usage
 app.use("/auth", authRoutes);
 app.use("/users/learner", learnerRoutes);
 app.use("/users/instructor", instructorRoutes);
 app.use("/courses", courseRoutes);
+app.use("/discussion", discussionRoutes);
 
 // Server
 const port = process.env.PORT || 5000;

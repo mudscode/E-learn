@@ -17,6 +17,17 @@ const commentSchema = mongoose.Schema({
   },
 });
 
+const courseMaterialSchema = mongoose.Schema({
+  type: {
+    type: String,
+    enum: ["video", "text", "audio", "other"],
+    required: true,
+  },
+  url: String,
+  duration: Number,
+  file: String,
+});
+
 const Course = mongoose.Schema(
   {
     title: {
@@ -35,15 +46,7 @@ const Course = mongoose.Schema(
       type: Number,
       default: 0,
     },
-    materials: [
-      {
-        type: {
-          type: String,
-        },
-        url: String,
-        duration: Number,
-      },
-    ],
+    materials: [courseMaterialSchema],
     comments: [commentSchema],
     enrolledLearners: [
       {
