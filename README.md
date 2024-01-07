@@ -1,2 +1,2 @@
 # E-learn
-An online learning platform &lt;In progress>
+An online learning platform
